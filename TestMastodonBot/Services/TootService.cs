@@ -81,7 +81,8 @@ namespace TestMastodonBot.Services
 
         private void OnNotificataion(object? sender, StreamNotificationEventArgs e)
         {
-            _logger.LogInformation(e.Notification.Account.Id);
+            var message = $"Got message from {e.Notification.Account.AccountName}: {e.Notification.Status.Content}";
+            _logger.LogInformation(message);
         }
 
     }
