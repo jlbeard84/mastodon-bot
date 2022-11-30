@@ -8,25 +8,25 @@ namespace TestMastodonBot.Workers
     {
         private readonly ILogger<Bot> _logger;
         private readonly IHost _host;
-        private readonly IConfigurationService _configService;
+        private readonly ITootService _tootService;
 
         public Bot(
             ILogger<Bot> logger,
             IHost host,
-            IConfigurationService configService)
+            ITootService tootService)
         {
             _logger = logger;
             _host = host;
-            _configService = configService;
+            _tootService = tootService;
         }
 
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
+            _logger.LogInformation($"Starting {nameof(Bot)}.{nameof(ExecuteAsync)}");
+
+            while (!cancellationToken.IsCancellationRequested)
             {
-                var user = _configService.GetUser();
-                _logger.LogInformation($"Logging at {DateTime.Now} for user {user?.Email ?? "N/A"}");
-                await Task.Delay(1000);
+                await _tootService.Execute(cancellationToken);
             }
         }
     }

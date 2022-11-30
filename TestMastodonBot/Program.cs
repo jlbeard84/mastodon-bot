@@ -28,6 +28,7 @@ public class Program
             .ConfigureServices((hostContext, services) => 
             {
                 services.AddSingleton<IConfigurationService, ConfigurationService>();
+                services.AddSingleton<ITootService, TootService>();
                 services.AddHostedService<Bot>();
             });
 

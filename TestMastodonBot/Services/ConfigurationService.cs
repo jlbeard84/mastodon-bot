@@ -6,9 +6,12 @@ namespace TestMastodonBot.Services
 {
     public class ConfigurationService: IConfigurationService
     {
+        private const string InstanceVariableName = "instance";
+
         private readonly IConfiguration _config;
         
         private MastodonUser? _mastodonUser = null;
+        private string? _instance = null;
 
         public ConfigurationService(
             IConfiguration config)
@@ -26,6 +29,18 @@ namespace TestMastodonBot.Services
             }
 
             return _mastodonUser;
+        }
+
+        public string? GetInstance()
+        {
+            if (string.IsNullOrWhiteSpace(_instance))
+            {
+                _instance = _config
+                    .GetSection(InstanceVariableName)
+                    .Get<string>();
+            }
+
+            return _instance;
         }
     }
 }
