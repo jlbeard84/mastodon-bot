@@ -23,11 +23,8 @@ namespace TestMastodonBot.Workers
         protected override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             _logger.LogInformation($"Starting {nameof(Bot)}.{nameof(ExecuteAsync)}");
-
-            while (!cancellationToken.IsCancellationRequested)
-            {
-                await _tootService.Execute(cancellationToken);
-            }
+            await _tootService.Execute(cancellationToken);
+            _logger.LogInformation($"Ending {nameof(Bot)}.{nameof(ExecuteAsync)}");
         }
     }
 }

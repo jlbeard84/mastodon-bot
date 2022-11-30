@@ -6,12 +6,14 @@ namespace TestMastodonBot.Services
 {
     public class ConfigurationService: IConfigurationService
     {
+        private const string AppNameVariableName = "appName";
         private const string InstanceVariableName = "instance";
-
+        
         private readonly IConfiguration _config;
         
-        private MastodonUser? _mastodonUser = null;
+        private string? _appName = null;
         private string? _instance = null;
+        private MastodonUser? _mastodonUser = null;
 
         public ConfigurationService(
             IConfiguration config)
@@ -31,7 +33,19 @@ namespace TestMastodonBot.Services
             return _mastodonUser;
         }
 
-        public string? GetInstance()
+        public string GetAppName()
+        {
+            if (string.IsNullOrWhiteSpace(_appName))
+            {
+                _appName = _config
+                    .GetSection(AppNameVariableName)
+                    .Get<string>();
+            }
+
+            return _appName ?? string.Empty;
+        }
+
+        public string GetInstance()
         {
             if (string.IsNullOrWhiteSpace(_instance))
             {
@@ -40,7 +54,7 @@ namespace TestMastodonBot.Services
                     .Get<string>();
             }
 
-            return _instance;
+            return _instance ?? string.Empty;
         }
     }
 }

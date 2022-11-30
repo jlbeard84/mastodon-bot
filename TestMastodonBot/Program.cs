@@ -23,11 +23,13 @@ public class Program
             {
                 app
                     .AddJsonFile("appsettings.json", false, true)
-                    .AddJsonFile("local.appsettings.json", true, true);
+                    .AddJsonFile("local.appsettings.json", true, true)
+                    .AddEnvironmentVariables();
             })
             .ConfigureServices((hostContext, services) => 
             {
                 services.AddSingleton<IConfigurationService, ConfigurationService>();
+                services.AddSingleton<IRegistrationService, RegistrationService>();
                 services.AddSingleton<ITootService, TootService>();
                 services.AddHostedService<Bot>();
             });
