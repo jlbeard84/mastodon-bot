@@ -30,6 +30,8 @@ public class Program
             {
                 services.AddSingleton<IConfigurationService, ConfigurationService>();
                 services.AddSingleton<IRegistrationService, RegistrationService>();
+                services.AddSingleton<IResponseService, ResponseService>();
+                services.AddSingleton<IAccountService, AccountService>();
                 services.AddSingleton<ITootService, TootService>();
                 services.AddHostedService<Bot>();
             });

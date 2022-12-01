@@ -9,15 +9,21 @@ namespace TestMastodonBot.Services
         private readonly ILogger<TootService> _logger;
         private readonly IConfigurationService _configService;
         private readonly IRegistrationService _registrationService;
+        private readonly IResponseService _responseService;
+        private readonly IAccountService _accountService;
 
         public TootService(
             ILogger<TootService> logger,
             IConfigurationService configService,
-            IRegistrationService registrationService)
+            IRegistrationService registrationService,
+            IResponseService responseService,
+            IAccountService accountService)
         {
             _logger = logger;
             _configService = configService;
             _registrationService = registrationService;
+            _responseService = responseService;
+            _accountService = accountService;
         }
 
         public async Task Execute(
@@ -79,11 +85,27 @@ namespace TestMastodonBot.Services
             _logger.LogInformation(e.Status.Content);
         }
 
-        private void OnNotificataion(object? sender, StreamNotificationEventArgs e)
+        private async void OnNotificataion(object? sender, StreamNotificationEventArgs e)
         {
-            var message = $"Got message from {e.Notification.Account.AccountName}: {e.Notification.Status.Content}";
-            _logger.LogInformation(message);
-        }
+            try
+            {
+                if (e.Notification.Type == "mention")
+                {
+                    var message = $"Got message from {e.Notification.Account.AccountName}: {e.Notification.Status.Content}";
+                    _logger.LogInformation(message);
 
+                    var responseStatusId = await _responseService.RespondWithRandomMessage(
+                        e.Notification.Account.AccountName,
+                        e.Notification.Account.DisplayName,
+                        e.Notification.Status.Id);
+
+                    await _accountService.FollowBack(e.Notification.Account.Id);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+            }
+        }
     }
 }
