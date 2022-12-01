@@ -1,8 +1,8 @@
 using Mastonet;
 using Microsoft.Extensions.Logging;
-using TestMastodonBot.Interfaces;
+using MastodonBot.Interfaces;
 
-namespace TestMastodonBot.Services
+namespace MastodonBot.Services
 {
     public class TootService: ITootService
     {

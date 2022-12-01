@@ -1,6 +1,6 @@
-using TestMastodonBot.Models;
+using MastodonBot.Models;
 
-namespace TestMastodonBot.Interfaces
+namespace MastodonBot.Interfaces
 {
     public interface IConfigurationService
     {

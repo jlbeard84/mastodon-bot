@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TestMastodonBot.Interfaces;
-using TestMastodonBot.Models;
-using TestMastodonBot.Services;
-using TestMastodonBot.Workers;
+using MastodonBot.Interfaces;
+using MastodonBot.Services;
+using MastodonBot.Workers;
 
 public class Program
 {

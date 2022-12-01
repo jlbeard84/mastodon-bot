@@ -1,4 +1,4 @@
-namespace TestMastodonBot.Interfaces
+namespace MastodonBot.Interfaces
 {
     public interface ITootService
     {

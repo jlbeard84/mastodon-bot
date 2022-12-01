@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace TestMastodonBot.Extensions
+namespace MastodonBot.Extensions
 {
     public static class HostExtensions
     {

@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using TestMastodonBot.Interfaces;
+using MastodonBot.Interfaces;
 
-namespace TestMastodonBot.Workers
+namespace MastodonBot.Workers
 {
     public class Bot: BackgroundService
     {

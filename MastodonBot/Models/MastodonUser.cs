@@ -1,4 +1,4 @@
-namespace TestMastodonBot.Models
+namespace MastodonBot.Models
 {
     public class MastodonUser
     {

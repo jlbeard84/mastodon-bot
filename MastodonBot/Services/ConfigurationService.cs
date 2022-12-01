@@ -1,8 +1,8 @@
 using Microsoft.Extensions.Configuration;
-using TestMastodonBot.Interfaces;
-using TestMastodonBot.Models;
+using MastodonBot.Interfaces;
+using MastodonBot.Models;
 
-namespace TestMastodonBot.Services
+namespace MastodonBot.Services
 {
     public class ConfigurationService: IConfigurationService
     {

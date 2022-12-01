@@ -2,9 +2,9 @@ using System.Text.Json;
 using Mastonet;
 using Mastonet.Entities;
 using Microsoft.Extensions.Logging;
-using TestMastodonBot.Interfaces;
+using MastodonBot.Interfaces;
 
-namespace TestMastodonBot.Services
+namespace MastodonBot.Services
 {
     public class RegistrationService: IRegistrationService
     {
